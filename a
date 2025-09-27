@@ -1,0 +1,13 @@
+SELECT
+    Country,
+    SUM(Quantity * UnitPrice) AS TotalRevenue,
+    AVG(Quantity * UnitPrice) AS AvgTransactionValue
+FROM
+    sale_data
+WHERE
+    Quantity > 0 AND UnitPrice > 0 -- Filter out cancellations and zero-price items
+GROUP BY
+    Country
+ORDER BY
+    TotalRevenue DESC
+LIMIT 5
